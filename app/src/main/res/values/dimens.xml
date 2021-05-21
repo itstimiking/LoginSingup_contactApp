@@ -2,4 +2,5 @@
 <resources>
     <dimen name="pad16">16dp</dimen>
     <dimen name="pad2">32dp</dimen>
+    <dimen name="pad1">16dp</dimen>
 </resources>

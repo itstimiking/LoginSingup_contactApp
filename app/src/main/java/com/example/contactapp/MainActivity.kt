@@ -4,14 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.contactapp.adapters.ContactAdapter
+import com.example.contactapp.data.Contact
 import com.example.contactapp.databinding.ActivityMainBinding
-import com.example.contactapp.databinding.ActivityMainBinding.inflate
 
 class MainActivity : AppCompatActivity() {
 

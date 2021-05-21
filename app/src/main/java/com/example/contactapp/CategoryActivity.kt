@@ -3,6 +3,8 @@ package com.example.contactapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.contactapp.adapters.CategoryAdapter
+import com.example.contactapp.data.Category
 import com.example.contactapp.databinding.ActivityCategoryBinding
 
 class CategoryActivity : AppCompatActivity() {

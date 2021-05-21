@@ -1,3 +1,3 @@
-package com.example.contactapp
+package com.example.contactapp.data
 
 data class Contact(val name: String, val number: String)

@@ -1,11 +1,11 @@
-package com.example.contactapp
+package com.example.contactapp.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.contactapp.data.Category
+import com.example.contactapp.MainActivity
 import com.example.contactapp.databinding.CategoryRecyclerItemViewBinding
 
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {

@@ -5,4 +5,13 @@
     <string name="add_contact">Add Contact</string>
     <string name="contacts">Contact List Activity</string>
     <string name="categories">Contact Categories</string>
+    <string name="emailHint">Email Address</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="acc">Log in Here</string>
+    <string name="have_account">Already have an account?</string>
+    <string name="fill_form">Fill the form bellow to sign up</string>
+    <string name="signup">SIGN UP</string>
+    <string name="login">LogIn</string>
+    <string name="login_text">LOGIN</string>
 </resources>
