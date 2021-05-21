@@ -24,6 +24,7 @@ class UserRepository(context: Context) {
                 user = db.userDao().findUser(email,password)
             }
         }
+        return user
     }
 
     fun insertUser(user: UserData){
