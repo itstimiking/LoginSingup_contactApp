@@ -1,32 +1,22 @@
 package com.example.contactapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactapp.databinding.CategoryRecyclerItemViewBinding
 
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    init {
-        setCategories()
-    }
-
     val categories = mutableListOf<Category>()
 
-    fun setCategories(){
-        addCategory("Family")
-        addCategory("Friends")
-        addCategory("Colleagues")
-        addCategory("Tutors")
-        addCategory("Co-workers")
-        addCategory("Unknown")
+    fun setCategories(categories: List<Category>){
+        this.categories.addAll(categories)
+        notifyDataSetChanged()
     }
 
-    private fun addCategory(categoryName: String){
-        val category = Category(categoryName)
-        this.categories.add(category)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(CategoryRecyclerItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -35,6 +25,11 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
         holder.bindCategory(category)
+        holder.itemView.setOnClickListener{ v ->
+            val intent = Intent(v.context, MainActivity::class.java)
+            intent.putExtra("Category", category.categoryName)
+            v.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

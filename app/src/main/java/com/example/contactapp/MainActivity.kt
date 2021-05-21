@@ -17,12 +17,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val contactAdapter = ContactAdapter()
+    private lateinit var category: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.myToolbar)
 
+        category = intent.getStringExtra("Category") ?: ""
+        if(category.isNotEmpty()){
+            supportActionBar?.title = category
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
         setUpData(binding)
     }
 

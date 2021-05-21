@@ -3,4 +3,6 @@
     <string name="enter_name">Enter name</string>
     <string name="eg_0807898789">eg, 0807898789</string>
     <string name="add_contact">Add Contact</string>
+    <string name="contacts">Contact List Activity</string>
+    <string name="categories">Contact Categories</string>
 </resources>
