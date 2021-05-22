@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 class UserViewModel: ViewModel() {
 
-    var loggedInUser: MutableLiveData<UserData>? = null
+    var loggedInUser = MutableLiveData<UserData>()
     private lateinit var userRepo: UserRepository
 
     override fun onCleared() {
@@ -25,7 +25,7 @@ class UserViewModel: ViewModel() {
         GlobalScope.launch {
             withContext(Dispatchers.IO){
                 val user = userRepo.findUser(email,password)
-                loggedInUser?.value = user
+                loggedInUser.postValue(user)
             }
         }
     }
@@ -36,7 +36,6 @@ class UserViewModel: ViewModel() {
         GlobalScope.launch {
             withContext(Dispatchers.IO){
                 userRepo.insertUser(newUser)
-                Log.d("View Model Log", "The view Model has logged in the user")
             }
         }
 

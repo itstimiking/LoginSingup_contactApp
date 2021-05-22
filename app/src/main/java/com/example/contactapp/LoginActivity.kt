@@ -1,5 +1,6 @@
 package com.example.contactapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,18 +29,19 @@ class LoginActivity : AppCompatActivity() {
             loginUser()
         }
 
-        viewModel.loggedInUser?.observe(this, Observer { newUser ->
-            updateUser(user)
+        viewModel.loggedInUser.observe(this, Observer { newUser ->
+            updateUser(newUser)
             Log.d("LOGINACTIVITY", "*************########### LIVE DATA OBSERVER CALLED ###########################************")
         })
     }
 
-    private fun updateUser(newUser: UserData?) {
+    private fun updateUser(newUser: UserData) {
         user = newUser
         if(user != null){
-            Log.d("LOGINACTIVITY", "*************########### user logged in ###########################************ $user")
+            val intent = Intent(this, CategoryActivity::class.java)
+            startActivity(intent)
         }else{
-            Log.d("LOGINACTIVITY", "*************########### NO USER ###########################************")
+            Toast.makeText(this, "Login details not found", Toast.LENGTH_SHORT)
         }
     }
 
