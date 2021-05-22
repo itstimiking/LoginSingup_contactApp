@@ -4,40 +4,49 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.contactapp.databinding.ActivityLoginBinding
 import com.example.contactapp.db.UserRepository
+import com.example.contactapp.db.UserViewModel
+import com.example.contactapp.db.entity.UserData
 
 class LoginActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: UserViewModel
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var userRepo: UserRepository
+    private var user: UserData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
         binding.signinButton.setOnClickListener {
             loginUser()
+        }
+
+        viewModel.loggedInUser?.observe(this, Observer { newUser ->
+            updateUser(user)
+            Log.d("LOGINACTIVITY", "*************########### LIVE DATA OBSERVER CALLED ###########################************")
+        })
+    }
+
+    private fun updateUser(newUser: UserData?) {
+        user = newUser
+        if(user != null){
+            Log.d("LOGINACTIVITY", "*************########### user logged in ###########################************ $user")
+        }else{
+            Log.d("LOGINACTIVITY", "*************########### NO USER ###########################************")
         }
     }
 
     private fun loginUser(){
-        userRepo = UserRepository(this)
-
         val email = binding.email.text.toString()
         val password = binding.password.text.toString()
 
-        val user = userRepo.findUser(email,password)
-        if(user == null){
-            Toast.makeText(this, "Wrong Details - Check your details", Toast.LENGTH_LONG).show()
-        }else if (user.email.isNotEmpty()){
-            Toast.makeText(this, "User exist", Toast.LENGTH_LONG).show()
-        }else {
-            Log.v(
-                "LOGIN LOGS",
-                "################# ************ USER LOGIN ISSUES ************############ $user"
-            )
-        }
+        viewModel.logInUser(this,email,password)
     }
 }

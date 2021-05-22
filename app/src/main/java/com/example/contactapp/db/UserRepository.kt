@@ -1,14 +1,8 @@
 package com.example.contactapp.db
 
 import android.content.Context
-import android.provider.Settings
-import androidx.lifecycle.LiveData
-import com.example.contactapp.db.UserDb.Companion.invoke
+import android.util.Log
 import com.example.contactapp.db.entity.UserData
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class UserRepository(context: Context) {
 
@@ -16,22 +10,12 @@ class UserRepository(context: Context) {
 
     fun getAll (): List<UserData> = db.userDao().getAll()
 
-    fun findUser(email: String, password: String): UserData?{
-        var user: UserData? = null
-
-        GlobalScope.launch {
-            withContext(Dispatchers.IO){
-                user = db.userDao().findUser(email,password)
-            }
-        }
+    fun findUser(email: String, password: String): UserData{
+        var user = db.userDao().findUser(email,password)
         return user
     }
 
-    fun insertUser(user: UserData){
-        GlobalScope.launch {
-            withContext(Dispatchers.IO){
-                db.userDao().insertUser(user)
-            }
-        }
+    fun insertUser(user: UserData) {
+        db.userDao().insertUser(user)
     }
 }
