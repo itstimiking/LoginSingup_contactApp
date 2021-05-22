@@ -36,6 +36,7 @@ class UserViewModel: ViewModel() {
         GlobalScope.launch {
             withContext(Dispatchers.IO){
                 userRepo.insertUser(newUser)
+
             }
         }
 

@@ -31,15 +31,15 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.loggedInUser.observe(this, Observer { newUser ->
             updateUser(newUser)
-            Log.d("LOGINACTIVITY", "*************########### LIVE DATA OBSERVER CALLED ###########################************")
         })
     }
 
     private fun updateUser(newUser: UserData) {
+        val intent = Intent(this, CategoryActivity::class.java)
         user = newUser
         if(user != null){
-            val intent = Intent(this, CategoryActivity::class.java)
             startActivity(intent)
+            Log.d("LOGINACTIVITY", "****** LOG IN CALLED *****")
         }else{
             Toast.makeText(this, "Login details not found", Toast.LENGTH_SHORT)
         }

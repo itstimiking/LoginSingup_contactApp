@@ -17,5 +17,6 @@ class UserRepository(context: Context) {
 
     fun insertUser(user: UserData) {
         db.userDao().insertUser(user)
+        LO
     }
 }
