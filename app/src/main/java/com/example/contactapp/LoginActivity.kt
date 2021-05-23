@@ -37,10 +37,12 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUser(newUser: UserData) {
         val intent = Intent(this, CategoryActivity::class.java)
         user = newUser
-        if(user != null){
-            startActivity(intent)
-            Log.d("LOGINACTIVITY", "****** LOG IN CALLED *****")
-        }else{
+
+        try{
+            if(user != null){
+                startActivity(intent)
+            }
+        }catch (e: Exception){
             Toast.makeText(this, "Login details not found", Toast.LENGTH_SHORT)
         }
     }
